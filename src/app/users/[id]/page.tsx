@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function UserProfile({ params }: Props) {
   const user = await prisma.user.findUnique({ where: { id: params.id } });
-  const { name, bio, image, id } = user ?? {};
+  const { name, email, bio, image, id } = user ?? {};
 
   return (
     <div>
@@ -27,6 +27,7 @@ export default async function UserProfile({ params }: Props) {
         src={image ?? "/mememan.webp"}
         alt={`${name}'s profile`}
       />
+      <h3>{email}</h3>
 
       <h3>Bio</h3>
       <p>{bio}</p>
